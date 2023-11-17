@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>User Management Dashboard</title>
+    <style>
+        /* Additional Custom Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        #app {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .navbar {
+            background-color: #007bff;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 8px 8px 0 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 8px);
+            padding: 0.5rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app" class="container mx-auto p-4">
+
+    <!-- Navigation Bar -->
+    <div class="navbar mb-4">
+        <h1 class="text-2xl font-bold">User Management Dashboard</h1>
+    </div>
+
+    <!-- Dashboard Tabs -->
+    <div class="mb-4">
+        <ul class="flex">
+            <li @click="activeTab = 'userDetails'" :class="{ 'bg-blue-500': activeTab === 'userDetails', 'hover:bg-blue-300': activeTab !== 'userDetails' }" class="px-4 py-2 mr-2 text-white cursor-pointer rounded-tl rounded-bl">User Details</li>
+            <li @click="activeTab = 'accountCreation'" :class="{ 'bg-blue-500': activeTab === 'accountCreation', 'hover:bg-blue-300': activeTab !== 'accountCreation' }" class="px-4 py-2 ml-2 text-white cursor-pointer rounded-tr rounded-br">Account Creation</li>
+        </ul>
+    </div>
+
+    <!-- Tab Content -->
+    <div v-if="activeTab === 'userDetails'" class="p-4">
+        <!-- User Details Tab Content -->
+        <div>
+            <input v-model="searchTerm" class="mb-4 p-2 border rounded" type="text" placeholder="Search users">
+            <table class="w-full">
+                <!-- ... (existing user details table) -->
+            </table>
+            <!-- ... (existing user details modal) -->
+        </div>
+    </div>
+
+    <div v-if="activeTab === 'accountCreation'" class="p-4">
+        <!-- Account Creation Tab Content -->
+        <div>
+            <h2 class="text-2xl font-bold mb-4">Account Creation</h2>
+            <form @submit.prevent="createAccount">
+                <!-- ... (existing account creation form) -->
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
